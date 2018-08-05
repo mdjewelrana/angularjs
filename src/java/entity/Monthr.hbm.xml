@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 30, 2018 11:35:57 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.Monthr" table="monthr" catalog="angularjs" optimistic-lock="version">
+        <id name="sl" type="java.lang.Integer">
+            <column name="sl" />
+            <generator class="identity" />
+        </id>
+        <property name="edate" type="string">
+            <column name="edate" length="45" not-null="true" />
+        </property>
+        <property name="des" type="string">
+            <column name="des" length="45" not-null="true" />
+        </property>
+        <property name="eve" type="string">
+            <column name="eve" length="45" not-null="true" />
+        </property>
+        <property name="statust" type="string">
+            <column name="statust" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

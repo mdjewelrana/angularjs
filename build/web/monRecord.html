@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html ng-app="myAp">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Monthly Records</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/angular.js" type="text/javascript"></script>
+        <script src="js/app.js" type="text/javascript"></script>
+        <style type="text/css">
+            .header, .footer-area{
+                border: 1px solid #DDD;
+                padding: 20px;
+                margin-top: 10px;
+                box-shadow: 0px 0px 10px #DDD;
+                background-color: wheat;
+            }
+            .content-area, .menu{
+                margin-top: 10px;
+            }
+            .sidebar, .content{
+                height: 500px;
+                overflow-y: scroll;
+                border: 1px solid #DDD;
+                padding: 20px;
+                box-shadow: 0px 0px 10px #DDD;
+                background-color: aqua;
+            }
+             .navbar{
+                    background-color: lightcyan;;
+                }
+        </style>
+
+    </head>
+    <body ng-controller="myCtrl">
+
+
+        <div class="container">
+            <div class="row">
+                <div class="header col-md-12">
+                    <h1><a href="">Monthly Records</a></h1>
+                </div>
+                <div class="menu col-md-12">
+                    <div class="row">
+                        <nav class="navbar navbar-default">
+                            <div class="container-fluid">
+
+                                <ul class="nav navbar-nav">
+                                    <li><a href="home.html">Home</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <div class="content-area col-md-12">
+                    <div class="row">
+                       
+                        <div class="content col-md-12">
+                            <button data-toggle="modal" data-target="#myModalSave" type="button" class="btn btn-success">Add Trainee Record</button>
+                            <br><br>
+                            <div class="alert alert-success alert-dismissible" ng-show="message">
+                                <a href="#" class="close" ng-click="messageClose()">&times;</a>
+                                <strong>Success!</strong> {{message}}
+                            </div>
+
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>Ex-Date</th>
+                                        <th>Descriptive</th>
+                                        <th>Evidence</th>
+                                        <th>Status</th>
+                                        
+
+                                        <th colspan="2">Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="monthr in months">
+                                        
+                                        <td>{{monthr.edate}}</td>
+                                        <td>{{monthr.des}}</td>
+                                        <td>{{monthr.eve}}</td>
+                                        <td>{{monthr.statust}}</td> 
+                                        
+                                        <td><button data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary" ng-click="selectMonth(monthr)">Edit</button></td>
+                                        <td><button data-toggle="modal" data-target="#myModalDelete" type="button" class="btn btn-danger" ng-click="selectMonth(monthr)">Delete</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- Save Modal -->
+                            <div id="myModalSave" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Insert Trainee Record</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="institute"> Exam-Date:</label>
+                                                    <input ng-model="newMonth.edate" type="text" class="form-control" id="institute">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="group"> Descriptive :</label>
+                                                    <input ng-model="newMonth.des" type="text" class="form-control" id="group">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="major">Evidence :</label>
+                                                    <input ng-model="newMonth.eve" type="text" class="form-control" id="major">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="result">Status :</label>
+                                                    <input ng-model="newMonth.statust" type="text" class="form-control" id="result">
+                                                </div>
+                                                
+                                                <button ng-click="saveMonth()" data-dismiss="modal" type="submit" class="btn btn-success">Submit</button>
+                                            </form> 
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Update Modal -->
+                            <div id="myModalEdit" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Update Month Record</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="institute"> E-date:</label>
+                                                    <input ng-model="clickedMonth.edate" type="text" class="form-control" id="institute">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="grp">Descriptive :</label>
+                                                    <input ng-model="clickedMonth.des" type="text" class="form-control" id="grp">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="major">Evidence :</label>
+                                                    <input ng-model="clickedMonth.eve" type="text" class="form-control" id="major">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="result">Status :</label>
+                                                    <input ng-model="clickedMonth.statust" type="text" class="form-control" id="result">
+                                                </div>
+                                               
+                                                <button ng-click="updateMonth()" data-dismiss="modal" type="submit" class="btn btn-success">Update</button>
+                                            </form> 
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Delete Modal -->
+                            <div id="myModalDelete" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Update Month record</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            You are now delete {{clickedMonth.edate}}
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button ng-click="deleteMonth()" type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-area col-md-12">
+                    footer
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

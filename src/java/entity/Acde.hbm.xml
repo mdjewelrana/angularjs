@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 30, 2018 11:35:57 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.Acde" table="acde" catalog="angularjs" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="institute" type="string">
+            <column name="institute" length="45" not-null="true" />
+        </property>
+        <property name="grp" type="string">
+            <column name="grp" length="45" not-null="true" />
+        </property>
+        <property name="major" type="string">
+            <column name="major" length="45" not-null="true" />
+        </property>
+        <property name="result" type="string">
+            <column name="result" length="45" not-null="true" />
+        </property>
+        <property name="respub" type="string">
+            <column name="respub" length="45" not-null="true" />
+        </property>
+        <property name="duration" type="string">
+            <column name="duration" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <style>
+        .container{
+             border: 1px solid #DDD;
+                padding: 220px;
+                margin-top: 10px;
+                box-shadow: 0px 0px 10px #DDD;
+                background-color: #faebcc;
+                hight:80%;
+        }
+    </style>
+    <div class="container">
+        <div class="col-md-8">
+            
+        </div>
+        <form name="LoginForm" method="post" action="home.html">
+            <table width="20%" bgcolor="0099CC" align="center">
+                <tr>
+                    <td colspan="2"><center><font size="2"><b>User's Login Here</b></font></center></td>
+                </tr>
+                <tr>
+                    <td><b>User Name:</b></td>
+                    <td><input type="text" size=50 name="userid"></td>
+                </tr>
+                <tr>
+                    <td><b>Password:</b></td>
+                    <td><input type="password" size=50 name="pwd"></td>
+                </tr>
+                <tr>
+
+                    <td><input type="Reset"></td>
+                    <td><input type="Submit" onclick ="return check(this.form)" value="Login"></td>
+
+
+            </table>
+
+        </form>
+    </div>
+    <script Language="javascript">
+        function check(form)
+        {
+            if (form.userid.value == "jewel" && form.pwd.value == "123")
+            {
+                return true;
+            }
+            alert("Please Enter a Valid user name and password toLgin")
+            return false;
+        }
+    </script>
+</html>
